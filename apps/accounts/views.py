@@ -30,7 +30,7 @@ class RegisterView(generics.CreateAPIView):
             'user'    : UserProfileSerializer(user).data,
             'refresh' : str(refresh),
             'access'  : str(refresh.access_token),
-            'message' : 'User registred succsessfully'
+            'message' : 'User registered successfully'
         }, status=status.HTTP_201_CREATED)
     
 
@@ -50,7 +50,7 @@ class LoginView(generics.CreateAPIView):
             'user'    : UserProfileSerializer(user).data,
             'refresh' : str(refresh),
             'access'  : str(refresh.access_token),
-            'message' : 'User login succsessfully'
+            'message' : 'User logged in successfully'
         }, status=status.HTTP_200_OK)
 
 class ProfileView(generics.RetrieveUpdateAPIView):

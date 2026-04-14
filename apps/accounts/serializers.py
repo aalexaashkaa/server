@@ -22,7 +22,7 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
     def validate(self, attrs):
         if attrs['password'] != attrs['password_confirm']:
             raise serializers.ValidationError(
-                {'passqord': "Password fields didn't match."}
+                {'password': "Password fields didn't match."}
             )
         return attrs
     
@@ -75,7 +75,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
             'id', 'username', 'email', 'first_name', 'last_name',
             'full_name', 'avatar'
         )
-        read_only_fields = ('id')
+        read_only_fields = ('id',)
 
 
 class UserUpdateSerializer(serializers.ModelSerializer):
@@ -83,7 +83,7 @@ class UserUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = (
-            'first_name', 'last_name', 'avatar', 'bio'
+            'first_name', 'last_name', 'avatar'
         )
 
     def update(self, instance, validated_data):
