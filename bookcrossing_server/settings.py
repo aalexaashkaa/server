@@ -9,6 +9,10 @@ from decouple import config
 #Базовая директория проекта
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+#Директория для хранения изображений
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
 #Ключ безопастности, храним в env для безопасности
 SECRET_KEY = config('SECRET_KEY')
 
@@ -41,12 +45,8 @@ THIRD_PATY_APPS = [
 LOCAL_APPS = [
     'apps.accounts',
     'apps.ads',
-    'apps.books',
-    'apps.exchanges',
-    'apps.notifications',
-    'apps.preferences',
-    'apps.recommendations',
     'apps.wishlist',
+    'apps.exchanges',
 ]
 
 
@@ -101,18 +101,8 @@ DATABASES = {
 
 #Валидаторы паролей
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+
+
 ]
 
 #Настройка интернациональности
@@ -135,6 +125,9 @@ AUTH_USER_MODEL = 'accounts.user'
 
 #Настройки DRF
 REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+		'rest_framework_simplejwt.authentication.JWTAuthentication',
+	),
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny', # Разрешить доступ всем
     ],

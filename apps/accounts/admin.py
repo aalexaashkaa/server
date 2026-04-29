@@ -4,14 +4,14 @@ from .models import User
 
 @admin.register(User)
 class UserAdmin(BaseUserAdmin):
-    list_display = ('email', 'username', 'first_name', 'last_name', 'is_active')
+    list_display = ('email', 'username', 'is_active', 'is_superuser')
     list_filter = ('is_active', 'is_staff', 'is_superuser')
-    search_fields = ('email', 'username', 'first_name', 'last_name')
+    search_fields = ('email', 'username')
     ordering = ('-username',) 
 
     fieldsets = (
         (None, {'fields': ('email', 'username', 'password')}),
-        ('Personal Info', {'fields': ('first_name', 'last_name', 'avatar')}),
+        ('Personal Info', {'fields': ('avatar',)}),
         ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
         ('Important dates', {'fields': ('last_login', 'date_joined')}),
     )

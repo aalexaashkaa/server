@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth import authenticate
 from django.contrib.auth.password_validation import validate_password
+
 from .models import User
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
@@ -15,8 +16,10 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = (
-            'username', 'email', 'password', 'password_confirm',
-            'first_name', 'last_name'
+            'username', 
+            'email', 
+            'password', 
+            'password_confirm',
         )
     
     def validate(self, attrs):
@@ -67,13 +70,14 @@ class UserLoginSerializer(serializers.Serializer):
 
 class UserProfileSerializer(serializers.ModelSerializer):
     """Сериализатор для профиля пользователя"""
-    full_name = serializers.ReadOnlyField()
 
     class Meta:
         model = User
         fields = (
-            'id', 'username', 'email', 'first_name', 'last_name',
-            'full_name', 'avatar'
+            'id', 
+            'username', 
+            'email', 
+            'avatar'
         )
         read_only_fields = ('id',)
 
@@ -83,7 +87,8 @@ class UserUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = (
-            'first_name', 'last_name', 'avatar'
+            'username',
+            'avatar',
         )
 
     def update(self, instance, validated_data):

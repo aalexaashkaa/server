@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class ExchangesConfig(AppConfig):
+class WishlistConfig(AppConfig):
     name = 'apps.exchanges'
